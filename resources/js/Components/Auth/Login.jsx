@@ -230,7 +230,7 @@ export default function Login() {
                     style={{ animationDelay: '1s' }}
                 />
 
-                <div className="relative z-10 max-w-sm px-8">
+                <div className="relative z-10 w-full max-w-sm px-8">
                     <div className="flex gap-1.5 mb-8">
                         {messages.map((_, i) => (
                             <div
@@ -242,26 +242,30 @@ export default function Login() {
                         ))}
                     </div>
 
-                    {messages.map((m, i) => {
-                        const Icon = m.icon;
-                        const isActive = i === active;
-                        return (
-                            <div
-                                key={i}
-                                className={`absolute inset-x-8 transition-all duration-700 ease-out ${
-                                    isActive
-                                        ? 'opacity-100 translate-y-0'
-                                        : 'opacity-0 translate-y-3 pointer-events-none'
-                                }`}
-                            >
-                                <div className="h-11 w-11 rounded-xl bg-zinc-100/10 border border-zinc-800 flex items-center justify-center mb-5">
-                                    <Icon size={20} className="text-zinc-100" />
+                    <div className="relative min-h-52">
+                        {messages.map((m, i) => {
+                            const Icon = m.icon;
+                            const isActive = i === active;
+                            return (
+                                <div
+                                    key={i}
+                                    className={`absolute inset-x-0 top-0 transition-all duration-700 ease-out ${
+                                        isActive
+                                            ? 'opacity-100 translate-y-0'
+                                            : 'opacity-0 translate-y-3 pointer-events-none'
+                                    }`}
+                                >
+                                    <div className="h-11 w-11 rounded-xl bg-zinc-100/10 border border-zinc-800 flex items-center justify-center mb-5">
+                                        <Icon size={20} className="text-zinc-100" />
+                                    </div>
+                                    <h2 className="text-2xl font-semibold text-zinc-50 tracking-tight mb-2 text-balance">
+                                        {m.title}
+                                    </h2>
+                                    <p className="text-zinc-400 text-sm leading-relaxed">{m.text}</p>
                                 </div>
-                                <h2 className="text-2xl font-semibold text-zinc-50 tracking-tight mb-2">{m.title}</h2>
-                                <p className="text-zinc-400 text-sm leading-relaxed">{m.text}</p>
-                            </div>
-                        );
-                    })}
+                            );
+                        })}
+                    </div>
                 </div>
             </div>
         </div>
